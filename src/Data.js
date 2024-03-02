@@ -491,7 +491,7 @@ export const contactList = [
     {
       id: 5,
       messageType: "TEXT",
-      text: "Subscribed to Simplilarn",
+      text: "quote of the day is` A POSTIVE MINDSET BRINGS POSTIVE THINGS 😎` ",
       senderID: 1,
       addedOn: "12:00 PM",
     },
@@ -1451,7 +1451,7 @@ export const contactList = [
     {
       id: 5,
       messageType: "TEXT",
-      text: "Subscribed to Simplilarn",
+      text: "YOUR LIMITS HAS NO LIMITS......💯",
       senderID: 1,
       addedOn: "12:00 PM",
     },

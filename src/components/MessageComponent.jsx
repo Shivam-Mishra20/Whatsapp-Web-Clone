@@ -146,12 +146,6 @@ const MessageComponent = ({ }) => {
                     <span className="p-2  bg-white rounded-md">TODAY</span>
                 </div>
                 <>
-                   
-
-
-
-
-
                     {messagesList.map((messageData) => (
                         <MessageDiv isYours={messageData.senderID === 0}>
                             <Message isYours={messageData.senderID === 0}>{[messageData.text]}
