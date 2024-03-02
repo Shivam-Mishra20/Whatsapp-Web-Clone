@@ -1,16 +1,7 @@
  
 export const contactList = [
      
-    
-       
-
   
-   
- 
-     
-     
-      
-   
      
     {
       id: 2,
@@ -541,14 +532,7 @@ export const contactList = [
       addedOn: "12:00 PM",
     },
      
-    {
-      id: 1,
-      messageType: "TEXT",
-      text: "hello",
-      senderID: 0,
-      date:new Date().toLocaleTimeString,
-      addedOn: "12:00 PM",
-    },
+   
     {
       id: 2,
       messageType: "TEXT",
@@ -646,7 +630,7 @@ export const contactList = [
       messageType: "TEXT",
       text: "hello",
       senderID: 0,
-      date:new Date().toLocaleTimeString,
+    
       addedOn: "12:00 PM",
     },
     {

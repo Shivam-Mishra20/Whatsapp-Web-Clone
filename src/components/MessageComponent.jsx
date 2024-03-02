@@ -124,7 +124,7 @@ const MessageComponent = ({ }) => {
                     <span className="pl-4">Anubhav Sharma</span>
 
                 </div>
-                <d iv className=" flex items-center justify-between gap-4 text-2xl text-gray-600">
+                <div className=" flex items-center justify-between gap-4 text-2xl text-gray-600">
                     <IoVideocam />
                     <CiSearch />
                     <FiMoreVertical className='' />
@@ -133,37 +133,37 @@ const MessageComponent = ({ }) => {
 
 
 
-                </d>
+                </div>
             </ProfileHeader>
             <MessageContainer className="  text-sm  px-6  overflow-y-auto ">
                 <div className=" text-center my-3 ">
                     <span className="p-2  bg-white rounded-md">TODAY</span>
                 </div>
-                    <>
-                        <div className="   text-center mt-4">
-                            <span className=" p-2 bg-white rounded-md">YESTERDAY</span>
+                <>
+                    <div className="   text-center mt-4">
+                        <span className=" p-2 bg-white rounded-md">YESTERDAY</span>
 
 
-                        </div>
+                    </div>
 
 
 
-                        <MessageDiv isYours={messageData.senderID === 0}>
+                    <MessageDiv isYours={messagesList.senderID === 0}>
 
-                            <Message isYours={messageData.senderID === 0} className=" md:text-sm mt-2 ">{[messageData.text]}
-                                <span className=" block    text-sm mt-3 ml-3">{dates.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        <Message isYours={messagesList.senderID === 0} className= " md:text-sm mt-2 ">{[messagesList.text]}
+                            <span className="  block     text-sm mt-3 ml-3">{dates.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
 
-                            </Message>
+                        </Message>
 
-                        </MessageDiv>
+                    </MessageDiv>
 
-                    </>
-                ))}
+                </>
+                
 
             </MessageContainer>
             <ChatBox>
                 <div className=" flex items-center gap-4">
-                    <EmojiImage src={"/data.svg"}   className=" ml-2"/>
+                    <EmojiImage src={"/data.svg"} className=" ml-2" />
                     <RxPlus className="   text-3xl  mr-6 " />
 
                 </div>
