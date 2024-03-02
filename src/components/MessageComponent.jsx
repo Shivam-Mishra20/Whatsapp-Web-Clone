@@ -7,6 +7,7 @@ import { CiSearch } from "react-icons/ci";
 import { RxPlus } from "react-icons/rx";
 import { RiSendPlane2Fill } from "react-icons/ri";
 import { useEffect, useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
 
 import { FaMicrophone } from "react-icons/fa6";
 
@@ -92,7 +93,7 @@ const SearchInput = styled.input`
 width: 100%;
 outline: none;
 border: none;
-padding-left: 15px;
+padding: 7px 15px;
 font-size: 12px;
 border-radius: 2px;
 margin-left: 2px;
@@ -125,7 +126,12 @@ const MessageComponent = ({ }) => {
 
                 </div>
                 <div className=" flex items-center justify-between gap-4 text-2xl text-gray-600">
+                    <div className=" flex  items-center gap-1">
                     <IoVideocam />
+                    <IoIosArrowDown  className=" text-xl"/>
+
+                    </div>
+                    
                     <CiSearch />
                     <FiMoreVertical className='' />
 
@@ -140,25 +146,24 @@ const MessageComponent = ({ }) => {
                     <span className="p-2  bg-white rounded-md">TODAY</span>
                 </div>
                 <>
-                    <div className="   text-center mt-4">
-                        <span className=" p-2 bg-white rounded-md">YESTERDAY</span>
-
-
-                    </div>
+                   
 
 
 
-                    <MessageDiv isYours={messagesList.senderID === 0}>
 
-                        <Message isYours={messagesList.senderID === 0} className= " md:text-sm mt-2 ">{[messagesList.text]}
-                            <span className="  block     text-sm mt-3 ml-3">{dates.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
 
-                        </Message>
+                    {messagesList.map((messageData) => (
+                        <MessageDiv isYours={messageData.senderID === 0}>
+                            <Message isYours={messageData.senderID === 0}>{[messageData.text]}
+                                <span className="  block     text-sm mt-3 ml-3">{dates.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
 
-                    </MessageDiv>
+
+                            </Message>
+                        </MessageDiv>
+                    ))}
 
                 </>
-                
+
 
             </MessageContainer>
             <ChatBox>
