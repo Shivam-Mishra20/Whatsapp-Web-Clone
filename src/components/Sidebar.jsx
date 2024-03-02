@@ -172,7 +172,7 @@ width: 28px;
 height: 28px;
 padding-left: 10px;
 `;
-export const SearchInput = styled.input`
+  const SearchInput = styled.input`
 width: 100%;
 outline: none;
 border: none;

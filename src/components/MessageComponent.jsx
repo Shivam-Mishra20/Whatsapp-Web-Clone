@@ -1,7 +1,7 @@
 // ConversationComponents.js
 import styled from "styled-components";
 import { messagesList } from "../Data";
-import { SearchContainer, SearchInput } from "./Sidebar";
+import { SearchContainer } from "./Sidebar";
 import { IoVideocam } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { RxPlus } from "react-icons/rx";
@@ -88,6 +88,16 @@ border-radius: 14px
  10px 3px 12px;
 `;
 
+const SearchInput = styled.input`
+width: 100%;
+outline: none;
+border: none;
+padding-left: 15px;
+font-size: 12px;
+border-radius: 2px;
+margin-left: 2px;
+`;
+
 const MessageComponent = ({ }) => {
     const [first, setfirst] = useState(false)
     const [dates, setdate] = useState(new Date())
@@ -129,7 +139,6 @@ const MessageComponent = ({ }) => {
                 <div className=" text-center my-3 ">
                     <span className="p-2  bg-white rounded-md">TODAY</span>
                 </div>
-                {messagesList.map((messageData) => (
                     <>
                         <div className="   text-center mt-4">
                             <span className=" p-2 bg-white rounded-md">YESTERDAY</span>
