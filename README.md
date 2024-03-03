@@ -1,8 +1,16 @@
-# React + Vite
+ WhatsApp Web Clone
+ 
+This project is a clone of the WhatsApp Web interface built using React. It provides a user-friendly interface  web browser.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+User-friendly interface similar to WhatsApp Web
+Responsive design for mobile and desktop
+Chat list with contact names and profile pictures
+Chat window for sending and receiving messages
+Input area for typing messages
+Scrollable chat history
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Technologies Used
+  React
+  Tailwind CSS
+  etc.
