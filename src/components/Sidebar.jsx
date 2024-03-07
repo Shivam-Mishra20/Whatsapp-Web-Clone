@@ -13,6 +13,10 @@ import Roundedbtn from "./Roundedbtn";
 import Chatwindow from "./Chatwindow";
 import MessageComponent from "./MessageComponent";
 import { IoFilter } from "react-icons/io5";
+import { BsChatText } from "react-icons/bs";
+
+import Groups from "./Groups";
+
 
 
 
@@ -24,100 +28,169 @@ const ContactComponent = ({ userData }) => {
 
     return (
 
-         
+
 
 
         <ContactItem className=" bg-gray-600   border  border-b    h-[80px]    "     >
 
-           
 
-                <div className="">
-                    <ProfileIcon src={userData.profilePic} />
 
+            <div className="">
+                <ProfileIcon src={userData.profilePic} />
+
+            </div>
+
+            <ContactInfo>
+                <ContactName>{userData.name}</ContactName>
+                <MessageText className="  whitespace-nowrap  ">{userData.lastText}</MessageText>
+            </ContactInfo>
+            <div className=" flex flex-col items-end  ">
+                <div>
+                    <MessageText className=" whitespace-nowrap" > {userData.lastTextTime}</MessageText>
+                </div>
+                <div>
+                    <span className="  text-[9px] rounded-full px-1 bg-green-500  text-white"> {userData.message} </span>
                 </div>
 
-                <ContactInfo>
-                    <ContactName>{userData.name}</ContactName>
-                    <MessageText className="  whitespace-nowrap  ">{userData.lastText}</MessageText>
-                </ContactInfo>
-                <div className=" flex flex-col items-end  ">
-                    <div>
-                        <MessageText className=" whitespace-nowrap" > {userData.lastTextTime}</MessageText>
-                    </div>
-                    <div>
-                        <span className="  text-[9px] rounded-full px-1.5 bg-green-500  text-white"> {userData.message} </span>
-                    </div>
 
 
-
-                </div>
+            </div>
 
         </ContactItem>
-        
-        
+
+
     );
 };
 
 const Sidebar = () => {
+
+
     const [first, setfirst] = useState(false)
 
     const handle = () => {
         setfirst(!first)
     }
-    const [openChats, setChats] = useState(false)
+    //for PRofile 
+    const [openProfile, setProfile] = useState(false)
+    //for group
+
+    //the main container 
+
+    const [ profilleinfo ,setProfileInfo ] =useState(ProfileInfoDiv)
+
+
+    const [openGrooup, setGroup] = useState(false);
+
+     
+
+    const [showBox, setShowBox] = useState(false);
+
+    const handleClick = () => {
+        setShowBox(!showBox); // Toggle the showBox state
+        setProfileInfo('')
+         
+    };
+
+
 
 
     return (
-        <Container className={`min-w-[25vw]  max-w-[auto]    w-100`}       onClick={() => setChats(!openChats)}>
-
-            {openChats ? <Chatwindow /> : (
-                <>
-
-                    <ProfileInfoDiv className=" flex justify-between border-r-2  border-gray-300  " onClick={handle}>
-                        <ProfileImage src="https://img.freepik.com/free-vector/x9maha-shivratri-festival-background-with-shiv-ling-card-holiday-design_1035-22319.jpg?t=st=1709109846~exp=1709113446~hmac=9c3596562763c284cc7aea8527ac4c7ce423f86b2c85ed0cfed3deab31ea2fe8&w=740" />
+        <Container className="min-w-[350px]  max-w-[450px]  w-100  relative " >
 
 
+            <>
+
+                <ProfileInfoDiv className=" flex justify-between border-r-2  border-gray-300   "   >
+                    <ProfileImage src="https://img.freepik.com/free-vector/x9maha-shivratri-festival-background-with-shiv-ling-card-holiday-design_1035-22319.jpg?t=st=1709109846~exp=1709113446~hmac=9c3596562763c284cc7aea8527ac4c7ce423f86b2c85ed0cfed3deab31ea2fe8&w=740" onClick={() => { setProfile(!openProfile), setSelectedIcon('') }} />
 
 
 
 
-                        {/* Profile nav buttons */}
-                        <div className="flex justify-between w-[175px]">
-                            <Roundedbtn icon={<MdPeopleAlt />} />
-                            <Roundedbtn icon={<TbCircleDashed />} />
-                            <Roundedbtn icon={<BsFillChatLeftTextFill />} />
-                            <Roundedbtn icon={<HiDotsVertical />} />
+
+
+                    {/* Profile nav buttons */}
+                    <div className="flex   gap-1 justify-between w-[185px]">
+
+                        <Roundedbtn icon={<MdPeopleAlt />} onClick={() => setGroup(!openGrooup)} />
+                        <Roundedbtn icon={<TbCircleDashed />} />
+                        <Roundedbtn icon={<BsChatText />} />
+                        <Roundedbtn icon={<BsFillChatLeftTextFill />} />
+                        <Roundedbtn icon={<HiDotsVertical />} onClick={handleClick} />
+
+
+
+                    </div>
+
+
+                </ProfileInfoDiv>
+
+
+                <SearchBox className=" items-center">
+                    <SearchContainer>
+                        <SearchIcon src={"/search-icon.svg"} />
+                        <SearchInput placeholder="Search or start new chat" />
+                    </SearchContainer>
+
+                    <IoFilter className="  text-gray-400  w-[10%] text-2xl px-2" />
+
+
+
+                </SearchBox>
+
+                <div>
+                    {openProfile && <  Chatwindow open={openProfile} setprofile={setProfile} /> }
+                    { openGrooup && <Groups open={openGrooup} setopen={setGroup}   />}
+                    {showBox && (
+                        <div
+                            style={{
+                                width: '250px',
+                                height: '260px',
+                                background:"white",
+                                position: 'absolute',
+                                top: '58px',
+                                right: '20px',
+                                zIndex: '0',
+                                boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
+                                borderRadius:"4px",
+                                fontWeight:"lighter"
+                            }} 
+                            onClick={handleClick}
+                           
+                        >
+                            <ul className=" flex flex-col gap-2 p-4  hover: bg-gray-100 ">
+                                <li> <a>New Group </a> </li>
+                                <li> <a>New Message </a> </li>
+                                <li> <a>New Chats </a> </li>
+                                <li> <a>Status Setting </a> </li>
+                                <li> <a>Setting </a> </li>
+                                <li> <a>Logout </a> </li>
+                                 
+                                <li className=" border-t-2">Get whatsapp premimum</li>
+                            </ul>
+
+                            
                         </div>
 
-
-                    </ProfileInfoDiv>
-                    <SearchBox className=" items-center">
-                        <SearchContainer>
-                            <SearchIcon src={"/search-icon.svg"} />
-                            <SearchInput placeholder="Search or start new chat" />
-                        </SearchContainer>
-
-                        <IoFilter className="  text-gray-400  w-[10%] text-2xl px-2" />
+                    )}
 
 
+                </div>
 
-                    </SearchBox>
+                <div className=" custom-scrollbar overflow-y-scroll">
 
-                    <div className=" custom-scrollbar overflow-y-scroll">
 
-                     
 
                     {contactList.map((userData, id) => (
 
                         <ContactComponent userData={userData} />
                     ))}
-                    </div>
+                </div>
+
+            </>
 
 
 
-                </>
 
-            )}
 
 
 
@@ -131,14 +204,18 @@ export default Sidebar;
 
 //styled components
 
-const Container = styled.div`
+export const Container = styled.div`
 display:flex;
 flex-direction: column;
-min-height:    calc(100vh - 46px);
- 
+min-height:  94vh;
+max-height: 94vh;
 height:  100%;
 width: 100%;
 flex:0.8;
+
+@media (max-width:600px){
+    overflow-y: scroll;
+}
  
  
 `;
@@ -172,7 +249,7 @@ width: 28px;
 height: 28px;
 padding-left: 10px;
 `;
-  const SearchInput = styled.input`
+const SearchInput = styled.input`
 width: 100%;
 outline: none;
 border: none;
@@ -191,8 +268,8 @@ const ContactItem = styled.div`
 `;
 
 const ProfileIcon = styled(ProfileImage)` 
-width: 46px;
-height: 38px;
+width: 66px;
+height: 48px;
 `;
 const ContactName = styled.span`
 width: 100%;

@@ -4,7 +4,7 @@
  }
  
  .custom-scrollbar::-webkit-scrollbar {
-   width: 10px; /* Set the width of the scrollbar */
+   width: 3px; /* Set the width of the scrollbar */
 
     
  }
@@ -40,4 +40,17 @@
    display: none;
  }
 
+ ul li {
+  text-align: start;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+ }
+
+  ul  li:hover{
+   box-shadow: 0px 1px  0px 0px gray;
  
+  font-weight: 200;
+
+
+ }
+

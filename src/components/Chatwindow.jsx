@@ -5,16 +5,16 @@ import { MdEdit } from "react-icons/md";
 
 
 
-const Chatwindow = () => {
+const Chatwindow = ({open ,setprofile}) => {
     return (
         <>
-            <div className=' bg-[#F0F2F5] h-screen overflow-hidden   '>
+            <div className=' bg-[#F0F2F5]  h-[78.5vh]   ' onClick={()=>{setprofile(!open)}}>
 
 
                 <div className=' flex flex-col items-center     '>
 
-                    <div className=' text-white h-[139px]  bg-[#008069]  w-full '>
-                        <div className=' flex gap-5 text-xl   text-start mt-16 px-4  '>
+                    <div className=' text-white h-[80px]  bg-[#008069]  w-full '>
+                        <div className=' flex gap-5 text-xl   text-start mt-6 px-4  '>
                             <FaArrowLeft />
                             <h3>Profile</h3>
                         </div>

@@ -12,11 +12,14 @@ import LoadingScreen from './components/LoadingScreen';
 const Container = styled.div`
 display : flex;
  
-
+overflow: hidden;
 flex-direction: row;
- max-height: 94vh;
+ max-height:  94vh ;
+ min-height:  94vh;
  height: 100%;
 width: 100%;
+margin-bottom: 100px;
+box-shadow: 2px 4px 6px  gray;
  
 background: #E2E1DE;
 @media (max-width: 697px) {
@@ -56,7 +59,7 @@ function App() {
         <>
 
           <div className='  h-[155px]  bg-[#00A884]  min-w-[100vw]   w-100   '>
-            <div className=' px-[24px] pt-[16px]       h-screen     '>
+            <div className=' px-[24px] pt-[16px]    max-h-[94vh]   h-full     '>
               <Container className='' >
                 <Sidebar />
                 <MessageComponent />

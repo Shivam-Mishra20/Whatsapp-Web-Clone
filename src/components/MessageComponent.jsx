@@ -72,13 +72,13 @@ background: url(https://user-images.githubusercontent.com/15075759/28719144-86dc
 `;
 
 const MessageDiv = styled.div`
-justify-content: ${(props) => (props.isYours ? 'flex-end' : 'flex-start')};
+justify-content: ${(props) => (props.isYours ? 'flex-start' : 'flex-end')};
 display:flex;
 margin: 5px 16px;
 `;
 
 const Message = styled.div`
-background: ${(props) => (props.isYours ? "#daf8cb" : "white")};
+background: ${(props) => (props.isYours ? "white" : "#daf8cb")};
 max-width:50%;
 color: #303030;
 padding: 8px 10px;
@@ -94,14 +94,30 @@ width: 100%;
 outline: none;
 border: none;
 padding: 7px 15px;
-font-size: 12px;
+font-size: 14px;
 border-radius: 2px;
 margin-left: 2px;
 `;
 
-const MessageComponent = ({ }) => {
+const MessageComponent = ( ) => {
     const [first, setfirst] = useState(false)
     const [dates, setdate] = useState(new Date())
+    const [messages, setMessages] = useState(messagesList);
+    const [newMessage, setNewMessage] = useState('');
+
+
+    const handleSendMessage = () => {
+        if (newMessage.trim() === '') return;
+
+        const newMessages = [...messages, { text: newMessage ,  isYours: false }];
+        setMessages(newMessages);
+        setNewMessage('');
+    };
+
+    const handleInputChange = (e) => {
+        setNewMessage(e.target.value);
+        setfirst(!false)
+    };
     useEffect(() => {
         const updateTime = setTimeout(() => {
             setdate(new Date())
@@ -127,11 +143,11 @@ const MessageComponent = ({ }) => {
                 </div>
                 <div className=" flex items-center justify-between gap-4 text-2xl text-gray-600">
                     <div className=" flex  items-center gap-1">
-                    <IoVideocam />
-                    <IoIosArrowDown  className=" text-xl"/>
+                        <IoVideocam />
+                        <IoIosArrowDown className=" text-xl" />
 
                     </div>
-                    
+
                     <CiSearch />
                     <FiMoreVertical className='' />
 
@@ -146,14 +162,28 @@ const MessageComponent = ({ }) => {
                     <span className="p-2  bg-white rounded-md">TODAY</span>
                 </div>
                 <>
-                    {messagesList.map((messageData) => (
-                        <MessageDiv isYours={messageData.senderID === 0}>
-                            <Message isYours={messageData.senderID === 0}>{[messageData.text]}
-                                <span className="  block     text-sm mt-3 ml-3">{dates.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    {messages.map((messageData, index) => (
+                        <>
+                            <div className=" text-center my-3 ">
+                                <span className="p-2  bg-white rounded-md">TODAY</span>
+                            </div>
 
 
-                            </Message>
-                        </MessageDiv>
+                            <MessageDiv isYours={messageData.senderID === 1} key={index}>
+
+
+
+                                <Message isYours={messageData.senderID === 1}>
+
+
+
+                                    {[messageData.text]}
+                                    <span className="  block     text-sm mt-3 ml-3">{dates.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+
+
+                                </Message>
+                            </MessageDiv>
+                        </>
                     ))}
 
                 </>
@@ -163,17 +193,25 @@ const MessageComponent = ({ }) => {
             <ChatBox>
                 <div className=" flex items-center gap-4">
                     <EmojiImage src={"/data.svg"} className=" ml-2" />
-                    <RxPlus className="   text-3xl  mr-6 " />
+                    <RxPlus className="   text-4xl  mr-2 " />
 
                 </div>
                 <SearchContainer>
 
 
-                    <SearchInput placeholder="Type a message" onKeyDown={() => setfirst(true)} />
+                    <SearchInput placeholder="Type a message" type="text"
+                        value={newMessage}
+
+                        onChange={handleInputChange}
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                                handleSendMessage();
+                            }
+                        }} />
                 </SearchContainer>
 
                 <div>
-                    {!first ? <FaMicrophone className=" text-gray-400 text-2xl mx-4 " /> : <RiSendPlane2Fill className=" text-gray-400 text-2xl mx-4 hover:text-green-600 " />
+                    {!first ? <FaMicrophone className=" text-gray-400 text-2xl mx-4 " /> : <RiSendPlane2Fill className=" text-gray-400 text-2xl mx-4   hover:text-green-600 " onClick={handleSendMessage} />
                     }
 
                 </div>
